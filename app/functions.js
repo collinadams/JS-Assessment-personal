@@ -56,6 +56,16 @@ exports.functionsAnswers = {
   },
 
   curryIt : function(fn) {
-
+    var argAccumulator = function(accumArgs, expectedArgs){
+      return function(currentArg){
+        accumArgs.push(currentArg);
+        if(accumArgs.length === expectedArgs){
+          return fn.apply(null, accumArgs);
+        }else{
+          return argAccumulator(accumArgs, expectedArgs);
+        }
+      };
+    };
+    return argAccumulator([], fn.length)
   }
 };
