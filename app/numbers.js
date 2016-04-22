@@ -27,6 +27,6 @@ exports.numbersAnswers = {
   },
 
   multiply: function(a, b) {
-
+    return ((a * 100) * (b * 100))/ (100 * 100);
   }
 };
