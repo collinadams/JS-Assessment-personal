@@ -33,5 +33,6 @@ exports.bestPracticesAnswers = {
 
   identity : function(val1, val2) {
     return val1 === val2;
+    //loose == comparison does type coersion before comparing
   }
 };
