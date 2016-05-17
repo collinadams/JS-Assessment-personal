@@ -46,10 +46,33 @@ exports.recursionAnswers = {
   },
 
   fibonacci: function(n) {
-
+    if(n < 2){
+      return n;
+    }else{
+      return exports.recursionAnswers.fibonacci(n - 1) + exports.recursionAnswers.fibonacci(n-2);
+    }
   },
 
   validParentheses: function(n) {
+    if(n < 1){
+      return [];
+    }else if(n === 1){
+      return ['()'];
+    }else{
+      var innerCombos = exports.recursionAnswers.validParentheses(n - 1);
+      var comboHashMap = {};
 
+      for(var i = 0; i < innerCombos.length; i++){
+        var innerCombo = innerCombos[i];
+        comboHashMap['(' + innerCombo + ')'] = true;
+        comboHashMap['()' + innerCombo] = true;
+        comboHashMap[innerCombo + '()'] = true;
+      }
+      var comboList = [];
+      for(var combo in comboHashMap){
+        comboList.push(combo);    
+      }
+      return comboList;
+    }
   }
 };
